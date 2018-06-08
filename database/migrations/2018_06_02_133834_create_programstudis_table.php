@@ -20,7 +20,7 @@ class CreateProgramstudisTable extends Migration
             $table->foreign('fasilitas_id')->references('id')->on('fasilitas')->onDelete('CASCADE');
             $table->UnsignedInteger('industris_id');
             $table->foreign('industris_id')->references('id')->on('industris')->onDelete('CASCADE');
-                        $table->UnsignedInteger('strukturs_id');
+            $table->UnsignedInteger('strukturs_id');
             $table->foreign('strukturs_id')->references('id')->on('strukturs')->onDelete('CASCADE');
             $table->timestamps();
         });

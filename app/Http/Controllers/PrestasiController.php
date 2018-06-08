@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\prestasi;
+use App\ekskul;
+use Illuminate\Http\Request;
 
 class PrestasiController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-    // menampilkan semua data post melalui model 'Post'
-        $a = prestasi::all();
-        return view('prestasi.index',compact('a'));
+        $prestasi = prestasi::with('ekskul')->get();
+        return view('prestasi.index',compact('prestasi'));
     }
 
     /**
@@ -26,7 +26,8 @@ class PrestasiController extends Controller
      */
     public function create()
     {
-        return view('prestasi.create');
+         $ekskul = ekskul::all();
+         return view('prestasi.create',compact('ekskul'));
     }
 
     /**
@@ -37,77 +38,78 @@ class PrestasiController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request,[
+    	  $this->validate($request,[
             'nama' => 'required|max:255',
-            'tgl_peroleh' => 'required|max:255'
-        ]);
-
-        $a = new prestasi;
-        $a->nama = $request->nama;
-        $a->tgl_peroleh = $request->tgl_peroleh;
-        $a->save();
-        return redirect()->route('prestasi.index');
+            'tgl_peroleh' => 'required|max:255',
+            'ekskuls_id'=>'required'
+            ]);
+      
+        $prestasi = new prestasi;
+        $prestasi->nama = $request->nama;
+        $prestasi->tgl_peroleh = $request->tgl_peroleh;
+        $prestasi->ekskuls_id = $request->ekskuls_id;
+        $prestasi->save();
+        return redirect()->route('prestasis.index');
     }
 
-    /**
-     * Display the specified resource.
+    /**id_eskulDisplay the sid_eskulified resource.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $a = Prestasi::findOrFail($id);
-        return view('prestasi.show',compact('a'));
+        $prestasi = prestasi::findOrFail($id);
+        return view('prestasi.show',compact('prestasi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // memanggil data pos berdasrkan id di halaman pos edit
-        $a = Prestasi::findOrFail($id);
-        return view('prestasi.edit',compact('a'));
+         $prestasi = prestasi::findOrFail($id);
+          $ekskul = ekskul::all();
+        $selectedEkskul = prestasi::findOrFail($id)->ekskuls_id;
+        return view('prestasi.edit',compact('prestasi','ekskul','selectedEkskul'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // unique dihapus karena ketika update data title tidak diubah juga tidak apa-apa
         $this->validate($request,[
             'nama' => 'required|max:255',
-            'tgl_peroleh' => 'required|max:255'
+            'tgl_peroleh' => 'required|max:255',
+            'ekskuls_id'=>'required'
         ]);
 
         // update data berdasarkan id
-        $a = Prestasi::findOrFail($id);
-        $a->nama = $request->nama;
-        $a->tgl_peroleh = $request->tgl_peroleh;
-        $a->save();
+        $prestasi = prestasi::findOrFail($id);
+        $prestasi->nama = $request->nama;
+        $prestasi->tgl_peroleh = $request->tgl_peroleh;
+        $prestasi->ekskuls_id = $request->ekskuls_id;
+        $prestasi->save();
         return redirect()->route('prestasis.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        // delete data beradasarkan id
-        $a = Prestasi::findOrFail($id);
+        $a = prestasi::findOrFail($id);
         $a->delete();
         return redirect()->route('prestasis.index');  
     }

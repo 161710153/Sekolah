@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Struktur;
+use App\struktur;
 
 class StrukturController extends Controller
 {
@@ -15,8 +15,8 @@ class StrukturController extends Controller
     public function index()
     {
     // menampilkan semua data post melalui model 'Post'
-        $a = Struktur::all();
-        return view('struktur.index',compact('a'));
+        $struktur = struktur::all();
+        return view('struktur.index',compact('struktur'));
     }
 
     /**
@@ -43,10 +43,10 @@ class StrukturController extends Controller
             'bidang' => 'required|max:255'
         ]);
 
-        $a = new Struktur;
-        $a->nama = $request->nama;
-        $a->bidang = $request->bidang;
-        $a->save();
+        $struktur = new struktur;
+        $struktur->nama = $request->nama;
+        $struktur->bidang = $request->bidang;
+        $struktur->save();
         return redirect()->route('strukturs.index');
     }
 
@@ -58,8 +58,8 @@ class StrukturController extends Controller
      */
     public function show($id)
     {
-        $a = Struktur::findOrFail($id);
-        return view('struktur.show',compact('a'));
+        $struktur = struktur::findOrFail($id);
+        return view('struktur.show',compact('struktur'));
     }
 
     /**
@@ -71,8 +71,8 @@ class StrukturController extends Controller
     public function edit($id)
     {
         // memanggil data pos berdasrkan id di halaman pos edit
-        $a = Struktur::findOrFail($id);
-        return view('struktur.edit',compact('a'));
+        $struktur = struktur::findOrFail($id);
+        return view('struktur.edit',compact('struktur'));
     }
 
     /**
@@ -91,10 +91,10 @@ class StrukturController extends Controller
         ]);
 
         // update data berdasarkan id
-        $a = Struktur::findOrFail($id);
-        $a->nama = $request->nama;
-        $a->bidang = $request->bidang;
-        $a->save();
+        $struktur = struktur::findOrFail($id);
+        $struktur->nama = $request->nama;
+        $struktur->bidang = $request->bidang;
+        $struktur->save();
         return redirect()->route('strukturs.index');
     }
 
@@ -107,8 +107,8 @@ class StrukturController extends Controller
     public function destroy($id)
     {
         // delete data beradasarkan id
-        $a = Struktur::findOrFail($id);
-        $a->delete();
+        $struktur = struktur::findOrFail($id);
+        $struktur->delete();
         return redirect()->route('strukturs.index');  
     }
 }

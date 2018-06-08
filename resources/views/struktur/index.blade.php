@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -21,7 +21,7 @@
 				  	</thead>
 				  	<tbody>
 				  		@php $no = 1; @endphp
-				  		@foreach($a as $data)
+				  		@foreach($struktur as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama }}</td>

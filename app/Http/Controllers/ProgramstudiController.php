@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\programstudi;
+use App\fasilitas;
+use App\industri;
+use App\struktur;
 use Illuminate\Http\Request;
-use App\Programstudi;
 
 class ProgramstudiController extends Controller
 {
@@ -14,9 +17,8 @@ class ProgramstudiController extends Controller
      */
     public function index()
     {
-    // menampilkan semua data post melalui model 'Post'
-        $a = Programstudi::all();
-        return view('programstudi.index',compact('a'));
+        $programstudi = programstudi::with('fasilitas','industri','struktur')->get();
+        return view('programstudi.index',compact('programstudi'));
     }
 
     /**
@@ -26,7 +28,10 @@ class ProgramstudiController extends Controller
      */
     public function create()
     {
-        return view('programstudi.create');
+    	 $fasilitas = fasilitas::all();
+         $industri = industri::all();
+         $struktur = struktur::all();
+         return view('programstudi.create',compact('fasilitas','industri','struktur'));
     }
 
     /**
@@ -37,84 +42,87 @@ class ProgramstudiController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request,[
+    	  $this->validate($request,[
             'nama_program' => 'required|max:255',
-            'fasilitas_id' => 'required',
-            'industris_id' => 'required',
-            'strukturs_id' => 'required'
-        ]);
-
-        $a = new Programstudi;
-        $a->nama_program = $request->nama_program;
-        $a->fasilitas_id = $request->fasilitas_id;
-        $a->industris_id = $request->industris_id;
-        $a->save();
-        return redirect()->route('programstudis.index');
+            'fasilitas_id'=>'required',
+            'industris_id'=>'required',
+            'strukturs_id'=>'required'
+            ]);
+      
+        $programstudi = new programstudi;
+        $programstudi->nama_program = $request->nama_program;
+        $programstudi->fasilitas_id = $request->fasilitas_id;
+        $programstudi->industris_id = $request->industris_id;
+        $programstudi->strukturs_id = $request->strukturs_id;
+        $programstudi->save();
+        return redirect()->route('program_studis.index');
     }
 
-    /**
-     * Display the specified resource.
+    /**id_eskulDisplay the sid_eskulified resource.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $a = Programstudi::findOrFail($id);
-        return view('programstudi.show',compact('a'));
+        $programstudi = programstudi::findOrFail($id);
+        return view('programstudi.show',compact('programstudi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // memanggil data pos berdasrkan id di halaman pos edit
-        $a = Programstudi::findOrFail($id);
-        return view('programstudi.edit',compact('a'));
+        $jurusan = jurusan::findOrFail($id);
+        $fasilitas = fasilitas::all();
+        $selectedFasilitas = programstudi::findOrFail($id)->fasilitas_id;
+        $industri = industri::all();
+        $selectedIndustri = programstudi::findOrFail($id)->industris_id;
+        $struktur = struktur::all();
+        $selectedStruktur = programstudi::findOrFail($id)->strukturs_id;
+        return view('programstudi.edit',compact('programstudi','fasilitas','industri','struktur',
+        'selectedFasilitas','selectedIndustri','selectedStruktur'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        // unique dihapus karena ketika update data title tidak diubah juga tidak apa-apa
         $this->validate($request,[
             'nama_program' => 'required|max:255',
-            'fasilitas_id' => 'required',
-            'industris_id' => 'required',
-            'strukturs_id' => 'required'
-        ]);
-
-        // update data berdasarkan id
-        $a = Programstudi::findOrFail($id);
-        $a->nama_program = $request->nama_program;
-        $a->fasilitas_id = $request->fasilitas_id;
-        $a->industris_id = $request->industris_id;
-        $a->save();
-        return redirect()->route('programstudis.index');
+            'fasilitas_id'=>'required',
+            'industris_id'=>'required',
+            'strukturs_id'=>'required'
+            ]);
+      
+        $programstudi = new programstudi;
+        $programstudi->nama_program = $request->nama_program;
+        $programstudi->fasilitas_id = $request->fasilitas_id;
+        $programstudi->industris_id = $request->industris_id;
+        $programstudi->strukturs_id = $request->strukturs_id;
+        $programstudi->save();
+        return redirect()->route('program_studis.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\mapel_siswa  $mapel_siswa
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        // delete data beradasarkan id
-        $a = Programstudi::findOrFail($id);
-        $a->delete();
-        return redirect()->route('programstudis.index');  
+        $programstudi = programstudi::findOrFail($id);
+        $programstudi->delete();
+        return redirect()->route('program_studis.index');  
     }
 }

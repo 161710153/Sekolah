@@ -21,7 +21,7 @@
 				  	</thead>
 				  	<tbody>
 				  		@php $no = 1; @endphp
-				  		@foreach($a as $data)
+				  		@foreach($fasilitas as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama }}</td>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Industri;
+use App\industri;
 
 class IndustriController extends Controller
 {
@@ -15,8 +15,8 @@ class IndustriController extends Controller
     public function index()
     {
     // menampilkan semua data post melalui model 'Post'
-        $a = Industri::all();
-        return view('industri.index',compact('a'));
+        $industri = industri::all();
+        return view('industri.index',compact('industri'));
     }
 
     /**
@@ -43,10 +43,10 @@ class IndustriController extends Controller
             'tahun_kerjasama' => 'required|max:255'
         ]);
 
-        $a = new Industri;
-        $a->nama = $request->nama;
-        $a->tahun_kerjasama = $request->tahun_kerjasama;
-        $a->save();
+        $industri = new Industri;
+        $industri->nama = $request->nama;
+        $industri->tahun_kerjasama = $request->tahun_kerjasama;
+        $industri->save();
         return redirect()->route('industris.index');
     }
 
@@ -58,8 +58,8 @@ class IndustriController extends Controller
      */
     public function show($id)
     {
-        $a = Industri::findOrFail($id);
-        return view('industri.show',compact('a'));
+        $industri = Industri::findOrFail($id);
+        return view('industri.show',compact('industri'));
     }
 
     /**
@@ -71,8 +71,8 @@ class IndustriController extends Controller
     public function edit($id)
     {
         // memanggil data pos berdasrkan id di halaman pos edit
-        $a = Industri::findOrFail($id);
-        return view('industri.edit',compact('a'));
+        $industri = Industri::findOrFail($id);
+        return view('industri.edit',compact('industri'));
     }
 
     /**
@@ -91,10 +91,10 @@ class IndustriController extends Controller
         ]);
 
         // update data berdasarkan id
-        $a = Industri::findOrFail($id);
-        $a->nama = $request->nama;
-        $a->tahun_kerjasa = $request->tahun_kerjasama;
-        $a->save();
+        $industri = Industri::findOrFail($id);
+        $industri->nama = $request->nama;
+        $industri->tahun_kerjasama = $request->tahun_kerjasama;
+        $industri->save();
         return redirect()->route('industris.index');
     }
 
@@ -107,8 +107,8 @@ class IndustriController extends Controller
     public function destroy($id)
     {
         // delete data beradasarkan id
-        $a = Industri::findOrFail($id);
-        $a->delete();
+        $industri = Industri::findOrFail($id);
+        $industri->delete();
         return redirect()->route('industris.index');  
     }
 }

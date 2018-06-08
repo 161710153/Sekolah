@@ -11,7 +11,7 @@
 			  <div class="panel-body">
         			<div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Ektrakulikuler</label>	
-			  			<input type="text" name="nama" class="form-control" value="{{ $a->nama }}" readonly>
+			  			<input type="text" name="nama" class="form-control" value="{{ $ekskul->nama }}" readonly>
 			  			@if ($errors->has('nama'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -21,23 +21,14 @@
 
 			  		<div class="form-group {{ $errors->has('jadwal') ? ' has-error' : '' }}">
 			  			<label class="control-label">Jadwal Kegiatan</label>	
-			  			<input type="text" name="jadwal" class="form-control" value="{{ $a->jadwal }}" readonly>
+			  			<input type="text" name="jadwal" class="form-control" value="{{ $ekskul->jadwal }}" readonly>
 			  			@if ($errors->has('jadwal'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('jadwal') }}</strong>
                             </span>
                         @endif
 			  		</div>
-
-			  		<div class="form-group {{ $errors->has('prestasis_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Prestasi</label>	
-			  			<input type="text" name="prestasis_id" class="form-control" value="{{ $a->prestasis_id }}" readonly>
-			  			@if ($errors->has('prestasis_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('prestasis_id') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
+					  
 			  	</div>
 			</div>	
 		</div>

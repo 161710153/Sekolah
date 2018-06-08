@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+<br>
+<br>
+<br>
 <div class="row">
 	<div class="container">
 		<div class="col-md-12">
@@ -14,18 +17,21 @@
 				  	<thead>
 			  		<tr>
 			  		  <th>No</th>
-					  <th>NAMA BIDANG</th>
-					  <th>TANGGAL PEROLEH</th>
+					  <th>NAMA </th>
+					  <th>TANGGAL PEROLEH </th>
+					  <th>EKEKUL </th>
 					  <th colspan="3">Action</th>
 			  		</tr>
 				  	</thead>
 				  	<tbody>
+				  		<?php $nomor = 1; ?>
 				  		@php $no = 1; @endphp
-				  		@foreach($a as $data)
+				  		@foreach($prestasi as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama }}</td>
 				    	<td>{{ $data->tgl_peroleh }}</td>
+				    	<td>{{ $data->ekskul->nama }}</td>
 						<td>
 							<a class="btn btn-warning" href="{{ route('prestasis.edit',$data->id) }}">Edit</a>
 						</td>

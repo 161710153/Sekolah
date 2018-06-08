@@ -17,7 +17,6 @@ class CreateEkskulsTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('jadwal');
-            $table->string('prestasi');
             $table->timestamps();
         });
     }

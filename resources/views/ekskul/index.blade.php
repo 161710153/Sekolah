@@ -16,18 +16,16 @@
 			  		  <th>No</th>
 					  <th>NAMA EKTRAKULIKULER</th>
 					  <th>JADWAL KEGIATAN</th>
-					  <th>PRESTASI</th>
 					  <th colspan="3">Action</th>
 			  		</tr>
 				  	</thead>
 				  	<tbody>
 				  		@php $no = 1; @endphp
-				  		@foreach($a as $data)
+				  		@foreach($ekskul as $data)
 				  	  <tr>
 				    	<td>{{ $no++ }}</td>
 				    	<td>{{ $data->nama }}</td>
 				    	<td>{{ $data->jadwal }}</td>
-				    	<td>{{ $data->prestasis_id }}</td>
 						<td>
 							<a class="btn btn-warning" href="{{ route('ekskuls.edit',$data->id) }}">Edit</a>
 						</td>

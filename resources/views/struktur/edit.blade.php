@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -9,13 +9,13 @@
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('strukturs.update',$a->id) }}" method="post" >
+			  	<form action="{{ route('strukturs.update',$struktur->id) }}" method="post" >
 			  		<input name="_method" type="hidden" value="PATCH">
         			{{ csrf_field() }}
 			  		
 			  		<div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Struktur Organisasi</label>	
-			  			<input type="text" name="nama" class="form-control" value="{{ $a->nama }}" required>
+			  			<input type="text" name="nama" class="form-control" value="{{ $struktur->nama }}" required>
 			  			@if ($errors->has('nama'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -25,7 +25,7 @@
 
 					<div class="form-group {{ $errors->has('bidang') ? ' has-error' : '' }}">
 			  			<label class="control-label">Bidang</label>	
-			  			<input type="text" name="bidang" class="form-control" value="{{ $a->bidang }}" required>
+			  			<input type="text" name="bidang" class="form-control" value="{{ $struktur->bidang }}" required>
 			  			@if ($errors->has('bidang'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('bidang') }}</strong>

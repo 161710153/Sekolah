@@ -15,7 +15,7 @@
 			  		
 			  		<div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama Falitas</label>	
-			  			<input type="text" name="nama" class="form-control" value="{{ $a->nama }}" required>
+			  			<input type="text" name="nama" class="form-control" value="{{ $fasilitas->nama }}" required>
 			  			@if ($errors->has('nama'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -25,7 +25,7 @@
 
 					<div class="form-group {{ $errors->has('jumlah') ? ' has-error' : '' }}">
 			  			<label class="control-label">Jumlah Fasilitas</label>	
-			  			<input type="text" name="jumlah" class="form-control" value="{{ $a->jumlah }}" required>
+			  			<input type="text" name="jumlah" class="form-control" value="{{ $fasilitas->jumlah }}" required>
 			  			@if ($errors->has('jumlah'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('jumlah') }}</strong>

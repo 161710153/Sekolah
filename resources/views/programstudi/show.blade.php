@@ -10,43 +10,45 @@
 			  </div>
 			  <div class="panel-body">
         			<div class="form-group {{ $errors->has('nama_program') ? ' has-error' : '' }}">
-			  			<label class="control-label">Nama Program</label>	
-			  			<input type="text" name="nama_program" class="form-control" value="{{ $a->nama_program }}" readonly>
+			  			<label class="control-label">Nama</label>	
+			  			<input type="text" name="nama_program" class="form-control" value="{{ $programstudi->nama_program }}" readonly>
 			  			@if ($errors->has('nama_program'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama_program') }}</strong>
                             </span>
                         @endif
 			  		</div>
+
 			  		<div class="form-group {{ $errors->has('fasilitas_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Fasilitas_id</label>	
-			  			<input type="text" name="fasilitas_id" class="form-control" value="{{ $a->fasilitas_id }}" readonly>
-			  			@if ($errors->has('fasilitas_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('fasilitas_id') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
+					  <label class="control-label">Fasilitas</label>
+					<input type="text" name="fasilitas_id" class="form-control" value="{{ $programstudi->fasilitas->nama }}"  readonly>
+					  @if ($errors->has('fasilitas_id'))
+						<span class="help-block">
+							<strong>{{ $errors->first('fasilitas_id') }}</strong>
+						</span>
+					@endif
+				  </div>
 
-			  		<div class="form-group {{ $errors->has('industris_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Industri_id</label>	
-			  			<input type="text" name="industris_id" class="form-control" value="{{ $a->industris_id }}" readonly>
-			  			@if ($errors->has('industris_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('industris_id') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
+				  <div class="form-group {{ $errors->has('industris_id') ? ' has-error' : '' }}">
+				  <label class="control-label">Industri</label>
+				<input type="text" name="industris_id" class="form-control" value="{{ $programstudi->industri->nama }}"  readonly>
+				  @if ($errors->has('industris_id'))
+					<span class="help-block">
+						<strong>{{ $errors->first('industris_id') }}</strong>
+					</span>
+				@endif
+			  </div>
 
-			  		<div class="form-group {{ $errors->has('strukturs_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Struktur_id</label>	
-			  			<input type="text" name="strukturs_id" class="form-control" value="{{ $a->strukturs_id }}" readonly>
+			  		<div class="form-group {{ $errors->has('stukturs_id') ? ' has-error' : '' }}">
+			  			<label class="control-label">Guru</label>
+						<input type="text" name="strukturs_id" class="form-control" value="{{ $programstudi->industri->nama }}"  readonly>
 			  			@if ($errors->has('strukturs_id'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('strukturs_id') }}</strong>
                             </span>
                         @endif
 			  		</div>
+
 			  		
 			  	</div>
 			</div>	

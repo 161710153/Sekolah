@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
@@ -11,7 +11,7 @@
 			  <div class="panel-body">
         			<div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama truktur Organisasi</label>	
-			  			<input type="text" name="nama" class="form-control" value="{{ $a->nama }}" readonly>
+			  			<input type="text" name="nama" class="form-control" value="{{ $struktur->nama }}" readonly>
 			  			@if ($errors->has('nama'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -21,7 +21,7 @@
 
 			  		<div class="form-group {{ $errors->has('bidang') ? ' has-error' : '' }}">
 			  			<label class="control-label">Bidang</label>	
-			  			<input type="text" name="bidang" class="form-control" value="{{ $a->bidang }}" readonly>
+			  			<input type="text" name="bidang" class="form-control" value="{{ $struktur->bidang }}" readonly>
 			  			@if ($errors->has('bidang'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('bidang') }}</strong>

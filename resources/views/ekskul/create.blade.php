@@ -32,15 +32,6 @@
                         @endif
 			  		</div>
 
-			  		<div class="form-group {{ $errors->has('prestasis_id') ? ' has-error' : '' }}">
-			  			<label class="control-label">Prestasi</label>	
-			  			<input type="text" name="prestasis_id" class="form-control"  required>
-			  			@if ($errors->has('prestasis_id'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('prestasis_id') }}</strong>
-                            </span>
-                        @endif
-			  		</div>
 			  		</d
 			  		<div class="form-group">
 			  			<button type="submit" class="btn btn-primary">Tambah</button>

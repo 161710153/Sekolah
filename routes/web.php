@@ -28,3 +28,15 @@ Route::resource('strukturs','StrukturController');
 Route::get('cek', function () {
     return view('layouts.admin');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function (){
+    Route::resource('ekskuls','EkskulController');
+});
+
+Route::group(['prefix'=>'/','middleware'=>['auth','role:member|admin']],function (){
+    Route::resource('/','Indexcontroller');
+});

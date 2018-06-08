@@ -58,8 +58,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'role' =>\lararatruts\middleware\lararatrutsRole::class,
-        'permission' =>\lararatruts\middleware\lararatrutsPermission::class,
-        'ability' =>\lararatruts\middleware\lararatrutsAbility::class,
+        'role' =>\laratruts\middleware\laratrutsRole::class,
+        'permission' =>\laratruts\middleware\laratrutsPermission::class,
+        'ability' =>\laratruts\middleware\laratrutsAbility::class,
     ];
 }

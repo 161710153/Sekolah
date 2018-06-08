@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class industri extends Model
 {
-    protected $table ='industri';
+    protected $table ='industris';
     protected $fillable = ['nama','tahun_kerjasama'];
     public $timestamps = true;
 }

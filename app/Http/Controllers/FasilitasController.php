@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Fasilitas;
+use App\fasilitas;
 
 class FasilitasController extends Controller
 {
@@ -15,8 +15,8 @@ class FasilitasController extends Controller
     public function index()
     {
     // menampilkan semua data post melalui model 'Post'
-        $a = Fasilitas::all();
-        return view('fasilitas.index',compact('a'));
+        $fasilitas = fasilitas::all();
+        return view('fasilitas.index',compact('fasilitas'));
     }
 
     /**
@@ -43,10 +43,10 @@ class FasilitasController extends Controller
             'jumlah' => 'required|max:255'
         ]);
 
-        $a = new Fasilitas;
-        $a->nama = $request->nama;
-        $a->jumlah = $request->jumlah;
-        $a->save();
+        $fasilitas = new fasilitas;
+        $fasilitas->nama = $request->nama;
+        $fasilitas->jumlah = $request->jumlah;
+        $fasilitas->save();
         return redirect()->route('fasilitas.index');
     }
 
@@ -58,8 +58,8 @@ class FasilitasController extends Controller
      */
     public function show($id)
     {
-        $a = Fasilitas::findOrFail($id);
-        return view('fasilitas.show',compact('a'));
+        $fasilitas = Fasilitas::findOrFail($id);
+        return view('fasilitas.show',compact('fasilitas'));
     }
 
     /**
@@ -71,8 +71,8 @@ class FasilitasController extends Controller
     public function edit($id)
     {
         // memanggil data pos berdasrkan id di halaman pos edit
-        $a = Fasilitas::findOrFail($id);
-        return view('fasilitas.edit',compact('a'));
+        $fasilitas = fasilitas::findOrFail($id);
+        return view('fasilitas.edit',compact('fasilitas'));
     }
 
     /**
@@ -91,10 +91,10 @@ class FasilitasController extends Controller
         ]);
 
         // update data berdasarkan id
-        $a = Fasilitas::findOrFail($id);
-        $a->nama = $request->nama;
-        $a->jumlah = $request->jumlah;
-        $a->save();
+        $fasilitas = fasilitas::findOrFail($id);
+        $fasilitas->nama = $request->nama;
+        $fasilitas->jumlah = $request->jumlah;
+        $fasilitas->save();
         return redirect()->route('fasilitas.index');
     }
 
@@ -107,8 +107,8 @@ class FasilitasController extends Controller
     public function destroy($id)
     {
         // delete data beradasarkan id
-        $a = Fasilitas::findOrFail($id);
-        $a->delete();
+        $fasilitas = fasilitas::findOrFail($id);
+        $fasilitas->delete();
         return redirect()->route('fasilitas.index');  
     }
 }
